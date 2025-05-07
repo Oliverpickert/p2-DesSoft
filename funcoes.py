@@ -109,8 +109,17 @@ def calcula_pontos_regra_avancada(dados_rolados: list[int]):
         'cinco_iguais': calcula_pontos_quina(dados_rolados),
         'full_house': calcula_pontos_full_house(dados_rolados),
         'quadra': calcula_pontos_quadra(dados_rolados),
-        'soma_combinada': calcula_pontos_soma(dados_rolados),
+        'sem_combinacao': calcula_pontos_soma(dados_rolados),
         'sequencia_alta': calcula_pontos_sequencia_alta(dados_rolados),
         'sequencia_baixa': calcula_pontos_sequencia_baixa(dados_rolados)
     }
     return resultado
+
+def faz_jogada(dados: list[int], categoria: str, cartela_de_pontos: dict):
+    pontos_simples = calcula_pontos_regra_simples(dados)
+    pontos_avancados = calcula_pontos_regra_avancada(dados)
+    if categoria in ['1', '2', '3', '4', '5', '6']:
+        cartela_de_pontos['regra_simples'][int(categoria)] = pontos_simples[int(categoria)]
+    else:
+        cartela_de_pontos['regra_avancada'][categoria] = pontos_avancados[categoria]
+    return cartela_de_pontos
