@@ -103,3 +103,14 @@ def calcula_pontos_quina(dados):
     if any(v >= 5 for v in counts.values()):
         return 50
     return 0 
+
+def calcula_pontos_regra_avancada(dados_rolados: list[int]):
+    resultado = {
+        'cinco_iguais': calcula_pontos_quina(dados_rolados),
+        'full_house': calcula_pontos_full_house(dados_rolados),
+        'quadra': calcula_pontos_quadra(dados_rolados),
+        'soma_combinada': calcula_pontos_soma(dados_rolados),
+        'sequencia_alta': calcula_pontos_sequencia_alta(dados_rolados),
+        'sequencia_baixa': calcula_pontos_sequencia_baixa(dados_rolados)
+    }
+    return resultado
